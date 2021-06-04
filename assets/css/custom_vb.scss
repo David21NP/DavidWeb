@@ -1,0 +1,172 @@
+/**
+* * Primary text color for paragraphs, labels and other essentials
+* * Secondary text color like form microcopy, captions, and table headings
+* * Interactive text (mostly, links)
+* * Inlineerror text color shown adjacent to controls
+* * Disabled text, usually in form controls and buttons
+*/
+
+
+/**
+* * * Set color palette
+*/
+
+/**
+* * base palette
+*/
+
+// Base grayscale colors definitions
+$gray-100: #F5F5F5 !default;
+$gray-200: #EEE !default;
+$gray-300: #E0E0E0 !default;
+$gray-400: #BDBDBD !default;
+$gray-500: #9E9E9E !default;
+$gray-600: #757575 !default;
+$gray-700: #616161 !default;
+$gray-800: #424242 !default;
+$gray-900: #212121 !default;
+
+// Base colors definitions
+$blue: #2196F3 !default;
+$indigo: #3F51B5 !default;
+$purple: #9C27B0 !default;
+$pink: #E91E63 !default;
+$red: #F44336 !default;
+$orange: #FF9800 !default;
+$yellow: #FFEB3B !default;
+$green: #4CAF50 !default;
+$teal: #009688 !default;
+$cyan: #00BCD4 !default;
+
+// Theme color default definitions
+$primary: hsla(210, 100%, 20%, 1) !default;
+$secondary: hsla(199, 92%, 74%, 1) !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: hsla(349, 100%, 35%, 1) !default;
+
+/**
+* * light palette
+*/
+
+$white: #fff !default;
+$light: $gray-100 !default;
+$primary-light: hsla(220, 40%, 41%, 1) !default;
+$secondary-light: hsla(180, 100%, 86%, 1) !default;
+
+/**
+* * dark palette
+*/
+
+$black: #000 !default;
+$dark: $gray-900 !default;
+$primary-dark: hsla(228, 100%, 12%, 1) !default;
+$secondary-dark: hsla(197, 53%, 54%, 1) !default;
+
+
+/**
+* * This table defines the theme colors (variant names)
+*/
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'primary-light': $primary-light,
+    'secondary-light': $secondary-light,
+    'primary-dark': $primary-dark,
+    'secondary-dark': $secondary-dark,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark,
+    'white': $white,
+    'black': $black,
+    'gray-200': $gray-200,
+    'gray-300': $gray-300,
+    'gray-400': $gray-400,
+    'gray-500': $gray-500,
+    'gray-600': $gray-600,
+    'gray-700': $gray-700,
+    'gray-800': $gray-800,
+  ),
+  $theme-colors
+);
+
+/**
+* * Remove a text decorations
+*/
+
+a, a[role='button'], a[role='menuitem'] {
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+
+/**
+* * Rules for sizing the material icon.
+*/
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+
+/**
+* * Rules for using icons as black on a light background.
+*/
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+
+  &.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+  }
+}
+
+
+/**
+* * Rules for using icons as white on a dark background.
+*/
+
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+
+  &.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// font-family: 'Cookie', cursive;
+// font-family: 'Monoton', cursive;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Press Start 2P', cursive;
+
+
+/**
+* * Add css variables to :root
+*/
+
+:root {
+  --font-family-open-sans: 'Open Sans', sans-serif;
+  --font-family-cookie: 'Cookie', cursive;
+  --font-family-monoton: 'Monoton', cursive;
+  --font-family-press-start-2p: 'Press Start 2P', cursive;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';

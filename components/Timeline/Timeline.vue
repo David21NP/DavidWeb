@@ -128,7 +128,6 @@ export default {
   background: #fff;
 }
 .main-timeline {
-  overflow: hidden;
   position: relative;
 }
 .main-timeline .timeline {

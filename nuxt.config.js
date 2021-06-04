@@ -1,6 +1,8 @@
+import getRoutes from './utils/getRoutes'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -14,7 +16,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', href: '/favicon.png' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       {
         href:
@@ -34,24 +36,24 @@ export default {
         href: 'https://fonts.googleapis.com/css2?family=Material+Icons+Round',
         rel: 'stylesheet',
       },
-      // {
-      //   href: 'https://fonts.googleapis.com/css2?family=Material+Icons+Sharp',
-      //   rel: 'stylesheet',
-      // },
-      // {
-      //   href:
-      //     'https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone',
-      //   rel: 'stylesheet',
-      // },
+      /* {
+        href: 'https://fonts.googleapis.com/css2?family=Material+Icons+Sharp',
+        rel: 'stylesheet',
+      },
+      {
+        href:
+          'https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone',
+        rel: 'stylesheet',
+      }, */
     ],
     script: [{ src: 'https://d3js.org/d3.v6.min.js' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/css/custom_variables.scss'],
+  css: ['~/assets/css/Light-dark-themes.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/axios'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
@@ -60,6 +62,7 @@ export default {
       '~/components/Footer',
       '~/components/Timeline',
       '~/components/DynamicLine',
+      '~/components/Articles',
     ],
   },
 
@@ -69,6 +72,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    // https://color-mode.nuxtjs.org
+    '@nuxtjs/color-mode',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -81,6 +86,12 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    // https://i18n.nuxtjs.org/es/
+    'nuxt-i18n',
+    // https://www.npmjs.com/package/@nuxtjs/sitemap
+    '@nuxtjs/sitemap',
+    // https://www.npmjs.com/package/vue-scrollto
+    // ['vue-scrollto/nuxt', { duration: 300, easing: 'ease-out' }],
   ],
 
   bootstrapVue: {
@@ -96,6 +107,9 @@ export default {
     manifest: {
       lang: 'en',
     },
+    icon: {
+      fileName: 'favicon.png',
+    },
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
@@ -103,4 +117,32 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Router opts: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router/
+  router: {},
+
+  // https://i18n.nuxtjs.org/es/options-reference
+  i18n: {
+    locales: [
+      { code: 'es', iso: 'es-CO', file: 'es.js', name: 'ES' },
+      { code: 'en', iso: 'en-US', file: 'en.js', name: 'EN' },
+      // { code: 'fr', iso: 'fr-FR', file: 'fr.js', name: 'FR' },
+    ],
+    defaultLocale: 'es',
+    langDir: '~/assets/js/lang/',
+    strategy: 'prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      onlyOnRoot: true,
+    },
+    seo: false,
+  },
+
+  sitemap: {
+    hostname: process.env.BASE_URL, // https://www.yoursite.com
+    routes() {
+      return getRoutes()
+    },
+  },
 }

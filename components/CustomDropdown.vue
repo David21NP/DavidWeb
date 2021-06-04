@@ -4,7 +4,7 @@
       <slot name="special-content"></slot>
     </template>
     <div v-for="item in items" :key="item.name">
-      <b-dropdown-item v-if="ifLink(item)" :to="item.link">
+      <b-dropdown-item v-if="ifLink(item)" :to="localePath(item.link)">
         {{ item.name }}
       </b-dropdown-item>
       <b-dropdown-item
@@ -12,9 +12,6 @@
         :href="item.link"
         target="_blank"
       >
-        {{ item.name }}
-      </b-dropdown-item>
-      <b-dropdown-item v-else :href="item.link">
         {{ item.name }}
       </b-dropdown-item>
     </div>
@@ -55,10 +52,14 @@ export default {
   updated() {},
   methods: {
     ifLink(item) {
-      return item.link.charAt(0) === '/'
+      return typeof item.link === 'string' || item.link instanceof String
+        ? item.link.charAt(0) === '/'
+        : true
     },
     ifLinkExt(item) {
-      return item.link.includes('http')
+      return typeof item.link === 'string' || item.link instanceof String
+        ? item.link.includes('http')
+        : false
     },
   },
 }

@@ -1,10 +1,10 @@
 <template>
-  <b-container class="text-dark py-5">
+  <b-container class="py-5">
     <b-row
       v-for="(event, id) in events"
       :key="id"
       align-h="center"
-      class="text-center"
+      class="text-justify"
     >
       <!-- First column -->
       <b-col
@@ -13,7 +13,7 @@
         order="6"
         :order-md="id % 2 == 0 ? 1 : 6"
       >
-        {{ event.description }}
+        {{ $t(event.description) }}
       </b-col>
       <!-- Second column -->
       <b-col class="time-line" md="1" order="2">
@@ -30,27 +30,9 @@
         align-self="center"
         :class="id % 2 == 0 ? 'text-left' : 'text-right'"
       >
-        <span> {{ event.time }} </span>
+        <span> {{ $t(event.time) }} </span>
       </b-col>
     </b-row>
-    <!-- <div class="main-timeline">
-      <div v-for="(event, id) in events" :key="id" class="timeline">
-        <span class="timeline-icon"></span>
-        <div class="timeline-content">
-          <b-icon
-            :icon="event.icon.name"
-            :variant="event.icon.color"
-            class="icon"
-          />
-          <p class="description">
-            {{ event.description }}
-          </p>
-        </div>
-        <div class="year">
-          <span> {{ event.time }} </span>
-        </div>
-      </div>
-    </div> -->
   </b-container>
 </template>
 
@@ -75,81 +57,6 @@ export default {
             condimentum justo consequat et.`,
           time: '2015 - 2021',
         },
-        {
-          icon: {
-            name: 'globe',
-            color: 'dark',
-          },
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at
-            laoreet risus, mollis rhoncus felis. Nulla consectetur pretium
-            lacinia. Morbi pharetra, quam non commodo pulvinar, dui diam laoreet
-            purus, vitae commodo ipsum lorem nec lacus. Etiam et malesuada
-            dolor. Integer consequat mauris in orci lobortis, non dictum sem
-            pharetra. Donec ut lacus enim. Sed tempor interdum elementum. Donec
-            consequat interdum consequat. Donec scelerisque sodales nisi, eu
-            condimentum justo consequat et.`,
-          time: '2021',
-        },
-        {
-          icon: {
-            name: 'globe',
-            color: 'dark',
-          },
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at
-            laoreet risus, mollis rhoncus felis. Nulla consectetur pretium
-            lacinia. Morbi pharetra, quam non commodo pulvinar, dui diam laoreet
-            purus, vitae commodo ipsum lorem nec lacus. Etiam et malesuada
-            dolor. Integer consequat mauris in orci lobortis, non dictum sem
-            pharetra. Donec ut lacus enim. Sed tempor interdum elementum. Donec
-            consequat interdum consequat. Donec scelerisque sodales nisi, eu
-            condimentum justo consequat et.`,
-          time: '2021',
-        },
-        {
-          icon: {
-            name: 'globe',
-            color: 'danger',
-          },
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at
-            laoreet risus, mollis rhoncus felis. Nulla consectetur pretium
-            lacinia. Morbi pharetra, quam non commodo pulvinar, dui diam laoreet
-            purus, vitae commodo ipsum lorem nec lacus. Etiam et malesuada
-            dolor. Integer consequat mauris in orci lobortis, non dictum sem
-            pharetra. Donec ut lacus enim. Sed tempor interdum elementum. Donec
-            consequat interdum consequat. Donec scelerisque sodales nisi, eu
-            condimentum justo consequat et.`,
-          time: '2015 - 2021',
-        },
-        {
-          icon: {
-            name: 'globe',
-            color: 'dark',
-          },
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at
-            laoreet risus, mollis rhoncus felis. Nulla consectetur pretium
-            lacinia. Morbi pharetra, quam non commodo pulvinar, dui diam laoreet
-            purus, vitae commodo ipsum lorem nec lacus. Etiam et malesuada
-            dolor. Integer consequat mauris in orci lobortis, non dictum sem
-            pharetra. Donec ut lacus enim. Sed tempor interdum elementum. Donec
-            consequat interdum consequat. Donec scelerisque sodales nisi, eu
-            condimentum justo consequat et.`,
-          time: '2021',
-        },
-        {
-          icon: {
-            name: 'globe',
-            color: 'dark',
-          },
-          description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at
-            laoreet risus, mollis rhoncus felis. Nulla consectetur pretium
-            lacinia. Morbi pharetra, quam non commodo pulvinar, dui diam laoreet
-            purus, vitae commodo ipsum lorem nec lacus. Etiam et malesuada
-            dolor. Integer consequat mauris in orci lobortis, non dictum sem
-            pharetra. Donec ut lacus enim. Sed tempor interdum elementum. Donec
-            consequat interdum consequat. Donec scelerisque sodales nisi, eu
-            condimentum justo consequat et.`,
-          time: '2021',
-        },
       ],
     },
   },
@@ -163,8 +70,8 @@ export default {
   height: 60px;
   line-height: 105px;
   border-radius: 50%;
-  background: var(--accent-color);
-  border: 12px solid var(--main-color);
+  background: var(--secondary);
+  border: 12px solid var(--primary);
   margin: auto;
   position: absolute;
   top: 0;
@@ -209,7 +116,7 @@ export default {
   content: '';
   width: 20px;
   height: 100%;
-  background: var(--main-color);
+  background: var(--primary);
   margin: 0 auto;
   position: absolute;
   top: 0;
@@ -236,7 +143,7 @@ export default {
 .time-line-icon-right::before {
   @include time_line_icon_before();
 
-  border-right: 15px solid var(--main-color);
+  border-right: 15px solid var(--primary);
   border-left: none;
   left: -33px;
   right: auto;
@@ -248,7 +155,7 @@ export default {
 .time-line-icon-left::before {
   @include time_line_icon_before();
 
-  border-left: 15px solid var(--main-color);
+  border-left: 15px solid var(--primary);
   border-right: none;
   left: auto;
   right: -33px;
@@ -266,18 +173,60 @@ export default {
 .time-date span {
   display: inline-block;
   padding: 12px 25px 12px 25px;
-  background: var(--second-color);
+  background: var(--secondary);
   border-radius: 20px 20px 20px 20px / 50% 50% 50% 50%;
   font-size: 40px;
   line-height: 36px;
-  color: #fff;
+  color: var(--dark);
 }
 
 @media only screen and (max-width: 767px) {
-  .main-timeline .timeline {
-    padding-top: 95px;
-    margin-top: 150px;
-    margin-bottom: 50px;
+  .time-line {
+    padding-top: 25px;
+    margin-top: 80px;
+    margin-bottom: 25px;
+  }
+
+  .time-line::before {
+    width: 100%;
+    height: 15px;
+    border-radius: 10px;
+    margin: 0;
+    top: 25px;
+  }
+
+  .time-line-icon-right,
+  .time-line-icon-left {
+    margin: 0 auto;
+    top: -65px;
+  }
+
+  .time-line-icon-right::before,
+  .time-line-icon-left::before {
+    border: 10px solid transparent;
+    border-top: 15px solid var(--primary);
+    margin: 0 auto;
+    position: absolute;
+    top: auto;
+    left: 0;
+    bottom: -43px;
+    right: 0;
+  }
+
+  .time-date {
+    width: 100%;
+    padding: 0;
+    text-align: center !important;
+  }
+
+  .time-date span {
+    display: inline-block;
+    padding: 12px 25px 12px 25px;
+    background: var(--secondary);
+    border-radius: 20px 20px 20px 20px / 50% 50% 50% 50%;
+    font-size: 40px;
+    line-height: 36px;
+    color: var(--dark);
   }
 }
 </style>

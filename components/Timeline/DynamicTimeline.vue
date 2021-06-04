@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import MyCanvas from '../../assets/js/MyCanvas.js'
+import MyCanvas from '~/assets/js/MyCanvas.js'
 export default {
   data() {
     return {

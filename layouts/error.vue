@@ -21,12 +21,12 @@
         <b-col v-if="statusCode === 404" cols="6" class="text-right">
           <b-button
             v-if="typeof $route === 'undefined'"
-            variant="dark-color"
+            variant="primary"
             href="/"
           >
             {{ m_messages.back_to_home }}
           </b-button>
-          <b-button v-else variant="dark-color" to="/">
+          <b-button v-else variant="primary" :to="localePath({ path: '/' })">
             {{ m_messages.back_to_home }}
           </b-button>
         </b-col>

@@ -1,28 +1,40 @@
 <template>
-  <b-container style="margin-top: 3.5rem" class="pt-5">
-    <b-row v-for="(row, idr) in rows" :key="idr" class="mb-5">
-      <b-col v-for="(item, idc) in row" :key="idc" :cols="cols">
+  <b-container class="mt-3">
+    <b-row v-for="(row, idr) in rows" :key="idr">
+      <b-col
+        v-for="(item, idc) in row"
+        :key="idc"
+        lg="4"
+        md="6"
+        cols="12"
+        class="mb-5"
+      >
         <b-card
+          v-if="item !== undefined"
           :title="item.title"
           header-tag="header"
-          footer-tag="footer"
           :img-src="item.imgsrc"
           :img-alt="item.imgalt"
-          img-top
+          img-height="160"
+          class="m-auto"
           style="max-width: 20rem !important"
-          :bg-variant="bgColor(idc + idr * itemsPerRow)"
+          :bg-variant="bgColor"
+          :text-variant="txColor"
         >
           <template #header>
             <h6 class="mb-0">{{ item.header }}</h6>
           </template>
           <b-card-text>{{ item.text }}</b-card-text>
           <b-button
-            :href="btnhref(idc + idr * itemsPerRow)"
-            :to="btnto(idc + idr * itemsPerRow)"
-            :type="btntype(idc + idr * itemsPerRow)"
-            :variant="btnColor(idc + idr * itemsPerRow)"
-            >{{ item.button }}</b-button
+            class="stretched-link"
+            :href="btnhref(item.buttonaction)"
+            :target="btnTarget(item.buttonaction)"
+            :to="localePath(btnto(item.buttonaction))"
+            :type="btntype(item.buttonaction)"
+            variant="secondary"
           >
+            {{ item.button }}
+          </b-button>
           <template #footer>
             <em> {{ item.footer }} </em>
           </template>
@@ -45,105 +57,67 @@ export default {
           header: 'Card header',
           text: 'Card text',
           button: 'Go somewhere',
-          buttonaction: '/life',
-          footer: 'Card footer',
-        },
-        {
-          title: 'Card title',
-          imgsrc: 'https://picsum.photos/600/300/?image=25',
-          imgalt: 'Image',
-          header: 'Card header',
-          text: 'Card text',
-          button: 'Go somewhere',
-          buttonaction: '',
-          footer: 'Card footer',
-        },
-        {
-          title: 'Card title',
-          imgsrc: 'https://picsum.photos/600/300/?image=25',
-          imgalt: 'Image',
-          header: 'Card header',
-          text: 'Card text',
-          button: 'Go somewhere',
-          buttonaction: '',
-          footer: 'Card footer',
-        },
-        {
-          title: 'Card title',
-          imgsrc: 'https://picsum.photos/600/300/?image=25',
-          imgalt: 'Image',
-          header: 'Card header',
-          text: 'Card text',
-          button: 'Go somewhere',
-          buttonaction: 'submit',
-          footer: 'Card footer',
-        },
-        {
-          title: 'Card title',
-          imgsrc: 'https://picsum.photos/600/300/?image=25',
-          imgalt: 'Image',
-          header: 'Card header',
-          text: 'Card text',
-          button: 'Go somewhere',
-          buttonaction: '',
-          footer: 'Card footer',
-        },
-        {
-          title: 'Card title',
-          imgsrc: 'https://picsum.photos/600/300/?image=25',
-          imgalt: 'Image',
-          header: 'Card header',
-          text: 'Card text',
-          button: 'Go somewhere',
-          buttonaction: '',
+          buttonaction: { path: '/life' },
           footer: 'Card footer',
         },
       ],
-    },
-    itemsPerRow: {
-      type: Number,
-      default: 3,
     },
   },
   computed: {
     rows() {
       const rows = []
-      for (let i = 0; i < this.cards.length; i += this.itemsPerRow) {
+      for (let i = 0; i < this.cards.length; i += 3) {
         const row = []
-        for (let j = 0; j < this.itemsPerRow; j++) {
+        for (let j = 0; j < 3; j++) {
           row.push(this.cards[i + j])
         }
         rows.push(row)
       }
       return rows
     },
-    cols() {
-      return Math.round(12 / this.itemsPerRow)
+    bgColor() {
+      return this.$colorMode.value === 'dark' ? 'dark' : 'light'
+    },
+    txColor() {
+      return this.$colorMode.value === 'dark' ? 'light' : 'gray-800'
     },
   },
   mounted() {},
   methods: {
-    bgColor(i) {
-      return i % 2 === 0 ? 'main-color' : 'second-color'
-    },
-    btnColor(i) {
-      return i % 2 === 0 ? 'second-color' : 'accent-color'
-    },
-    btnhref(i) {
-      return this.cards[i].buttonaction.includes('http')
-        ? this.cards[i].buttonaction
+    btnTarget(link) {
+      return typeof link === 'string' || link instanceof String
+        ? link.includes('http')
+          ? '_blank'
+          : ''
         : ''
     },
-    btnto(i) {
-      return this.cards[i].buttonaction.charAt(0) === '/'
-        ? this.cards[i].buttonaction
+    btnhref(link) {
+      return typeof link === 'string' || link instanceof String
+        ? link.includes('http')
+          ? link
+          : ''
         : ''
     },
-    btntype(i) {
-      return ['button', 'submit', 'reset'].includes(this.cards[i].buttonaction)
-        ? this.cards[i].buttonaction
+    btnto(link) {
+      return typeof link === 'string' || link instanceof String
+        ? link.charAt(0) === '/'
+          ? link
+          : ''
+        : link
+    },
+    btntype(link) {
+      return typeof link === 'string' || link instanceof String
+        ? ['button', 'submit', 'reset'].includes(link)
+          ? link
+          : 'button'
         : 'button'
     },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+img {
+  object-fit: cover;
+}
+</style>

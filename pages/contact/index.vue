@@ -4,28 +4,21 @@
       class="font-weight-bolder text-center display-4"
       :class="$colorMode.value === 'dark' ? 'text-light' : ''"
     >
-      {{ $t('life.title') }}
+      {{ $t('contact.title') }}
     </h1>
-    <SimpleTimeline
-      :events="evs"
-      :class="$colorMode.value === 'dark' ? 'text-light' : 'text-dark'"
-    />
+    <b-container class="py-5">
+      <ContactForm :class="$colorMode.value === 'dark' ? 'text-light' : ''" />
+    </b-container>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'Vuex'
 export default {
   scrollToTop: true,
   head() {
     return {
-      title: 'Life - DavidWeb',
+      title: 'Contact - DavidWeb',
     }
-  },
-  computed: {
-    ...mapGetters({
-      evs: 'timeline/getEvents',
-    }),
   },
 }
 </script>

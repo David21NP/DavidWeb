@@ -14,6 +14,11 @@
 export default {
   scrollToTop: true,
   async asyncData({ $content, params, i18n }) {
+    const categoryM = params.cat
+    const whereParam = params.cat
+      ? { categories: { $contains: params.cat } }
+      : ''
+    // console.log(whereParam)
     const articles = await $content(`${i18n.locale}/projects`)
       .only([
         'title',
@@ -26,6 +31,7 @@ export default {
         'updatedAt',
         'categories',
       ])
+      .where(whereParam)
       .sortBy('createdAt', 'asc')
       .fetch()
 
@@ -52,11 +58,12 @@ export default {
     return {
       articles,
       loadedCards,
+      categoryM,
     }
   },
   head() {
     return {
-      title: 'Projects - DavidWeb',
+      title: `${this.categoryM} - DavidWeb`,
     }
   },
 }

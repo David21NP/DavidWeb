@@ -1,0 +1,9 @@
+@import 'custom_vb.scss';
+
+.light-mode body {
+  background-color: #fff;
+}
+
+.dark-mode body {
+  background-color: $black;
+}
