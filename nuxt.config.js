@@ -118,6 +118,14 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
+  /*
+   ** For deployment you might want to edit host and port
+   */
+  server: {
+    port: 8000,
+    host: '192.168.0.3',
+  },
+
   // Router opts: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router/
   router: {},
 

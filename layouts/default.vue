@@ -1,6 +1,12 @@
 <template>
   <div>
     <Navbar :nav-color="color" :nav-text-color="texto" :nav-shadow="shadow" />
+    <NavBottom
+      :class="navbClass"
+      :nav-color="colorBtm"
+      :nav-text-color="texto"
+      :nav-shadow="shadow"
+    />
     <Nuxt />
     <Footer id="info" :bg-color="main_color" tx-color="light" />
   </div>
@@ -48,6 +54,16 @@ export default {
         ? 'shadow'
         : ''
     },
+    colorBtm() {
+      return this.$colorMode.value === 'light' ? 'primary' : 'gray-800'
+    },
+    navbClass() {
+      return (this.$route.path !== this.locale &&
+        this.$route.path !== `${this.locale}/`) ||
+        this.scrollY > 35
+        ? 'd-block d-lg-none'
+        : 'd-none'
+    },
   },
   watch: {
     $route(to, from) {
@@ -57,6 +73,11 @@ export default {
   mounted() {
     this.checkTop()
     window.addEventListener('scroll', this.checkTop)
+    const bodyElement = document.querySelector('body')
+    bodyElement.classList.add('pb-5')
+    bodyElement.classList.add('mb-4')
+    bodyElement.classList.add('pb-lg-0')
+    bodyElement.classList.add('mb-lg-0')
     /* window.scroll({
       top: 0,
       left: 0,
@@ -71,6 +92,11 @@ export default {
   },
   destroyed() {
     window.removeEventListener('scroll', this.checkTop)
+    const bodyElement = document.querySelector('body')
+    bodyElement.classList.remove('pb-5')
+    bodyElement.classList.remove('mb-4')
+    bodyElement.classList.remove('pb-lg-0')
+    bodyElement.classList.remove('mb-lg-0')
   },
   methods: {
     checkTop() {

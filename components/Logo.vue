@@ -1,8 +1,8 @@
 <template>
   <svg
     version="1.0"
-    width="150"
-    height="85"
+    :width="150 * svgEscale"
+    :height="85 * svgEscale"
     viewBox="0 0 150 85"
     class="NuxtLogo"
     :style="fill"
@@ -45,6 +45,10 @@ export default {
     fillColor: {
       type: String,
       default: '',
+    },
+    svgEscale: {
+      type: Number,
+      default: 1,
     },
   },
   computed: {

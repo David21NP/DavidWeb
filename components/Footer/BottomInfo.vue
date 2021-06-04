@@ -1,8 +1,15 @@
 <template>
   <b-container fluid class="mb-3 px-0">
     <b-row>
-      <b-col md="4" cols="12" order-md="0" order="1" class="px-5 my-2 my-md-0">
-        <ColorModeBtn />
+      <b-col
+        md="4"
+        cols="12"
+        order-md="0"
+        order="1"
+        class="px-5 my-2 my-md-0 d-none d-md-flex"
+      >
+        <!-- <ColorModeBtn /> -->
+        <Logo fill-color="light" :svg-escale="0.4" />
       </b-col>
       <b-col md="4" cols="12" order-md="0" order="0">
         <div class="py-2">

@@ -10,14 +10,14 @@
           href="https://github.com/David21NP"
           target="_blank"
         >
-          <b-icon-github />
+          <b-icon-github font-scale="2" />
         </b-nav-item>
         <b-nav-item
           :link-classes="txClass"
           href="https://www.linkedin.com/in/david-pardo-2102"
           target="_blank"
         >
-          <b-icon-linkedin />
+          <b-icon-linkedin font-scale="2" />
         </b-nav-item>
         <!-- <b-nav-item
           :link-classes="txClass"
@@ -27,7 +27,7 @@
           <b-icon-instagram />
         </b-nav-item> -->
       </b-nav>
-      <b-nav align="center">
+      <b-nav align="center d-none d-lg-flex">
         <b-nav-item
           :link-classes="txClass"
           :to="localePath({ path: '/', hash: 'about' })"

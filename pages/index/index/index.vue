@@ -16,18 +16,21 @@
       </p>
 
       <b-button
+        class="mb-3 mb-sm-0"
         :to="localePath({ path: '/life' })"
         :variant="$colorMode.value === 'dark' ? 'secondary' : 'primary'"
       >
         {{ $t('about.links.life') }}
       </b-button>
       <b-button
+        class="mb-3 mb-sm-0"
         :to="localePath({ path: '/projects' })"
         :variant="$colorMode.value === 'dark' ? 'secondary' : 'primary'"
       >
         {{ $t('about.links.projects') }}
       </b-button>
       <b-button
+        class="mb-3 mb-sm-0"
         :to="localePath({ path: '/contact' })"
         :variant="$colorMode.value === 'dark' ? 'secondary' : 'primary'"
       >

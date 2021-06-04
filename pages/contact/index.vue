@@ -1,5 +1,5 @@
 <template>
-  <div class="open-sans" style="padding-top: 8rem">
+  <div class="open-sans pb-0 pb-sm-5 pb-lg-0" style="padding-top: 8rem">
     <h1
       class="font-weight-bolder text-center display-4"
       :class="$colorMode.value === 'dark' ? 'text-light' : ''"

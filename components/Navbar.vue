@@ -1,8 +1,8 @@
 <template>
   <b-navbar
+    id="top-nav"
     class="nav-anim open-sans"
     :class="`${navShadow} text-${navTextColor}`"
-    toggleable="lg"
     :variant="navColor"
     fixed="top"
   >
@@ -10,25 +10,16 @@
       <div class="ml-md-5">
         <div class="ml-lg-5">
           <b-navbar-brand class="ml-xl-5" :to="localePath({ path: '/' })">
-            <!-- <h2>Nicholas David</h2> -->
-            <Logo :fill-color="`${navTextColor}`" />
+            <Logo :fill-color="`${navTextColor}`" :svg-escale="0.8" />
           </b-navbar-brand>
         </div>
       </div>
     </div>
 
-    <b-navbar-toggle target="nav-collapse" class="border-light text-light">
-      <template #default>
-        <span class="material-icons-outlined"> menu </span>
-        <!-- <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
-        <b-icon v-else icon="chevron-bar-down"></b-icon> -->
-      </template>
-    </b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <div class="ml-auto mr-lg-5 text-uppercase">
-        <div class="mr-lg-3">
-          <b-navbar-nav class="mr-lg-5">
+    <div class="ml-auto mr-lg-5 text-uppercase">
+      <div class="mr-md-3">
+        <b-navbar-nav class="mr-md-5">
+          <div class="d-none d-lg-flex">
             <b-nav-item
               :link-classes="`text-${navTextColor}`"
               :to="localePath({ path: '/life' })"
@@ -53,44 +44,41 @@
             >
               {{ $t('navbar.contact') }}
             </b-nav-item>
-            <b-nav-item
-              :link-classes="`text-${navTextColor}`"
-              @click="btnColorMode"
+          </div>
+          <b-nav-item
+            :link-classes="`text-${navTextColor}`"
+            @click="btnColorMode"
+          >
+            <div
+              v-if="
+                $colorMode.preference === 'dark' || $colorMode.value === 'dark'
+              "
             >
-              <div
-                v-if="
-                  $colorMode.preference === 'dark' ||
-                  $colorMode.value === 'dark'
-                "
+              <span class="align-middle material-icons md-24"> dark_mode </span>
+            </div>
+            <div v-else-if="$colorMode.preference === 'light'">
+              <span class="align-middle material-icons md-24">
+                light_mode
+              </span>
+            </div>
+          </b-nav-item>
+          <LangDropdown
+            class="text-uppercase"
+            :variant="navColor"
+            :langs="availableLocales"
+            :style-class="`text-${navTextColor}`"
+          >
+            <template #special-content>
+              <span
+                :class="`align-middle material-icons md-24 text-${navTextColor}`"
               >
-                <span class="align-middle material-icons md-24">
-                  dark_mode
-                </span>
-              </div>
-              <div v-else-if="$colorMode.preference === 'light'">
-                <span class="align-middle material-icons md-24">
-                  light_mode
-                </span>
-              </div>
-            </b-nav-item>
-            <LangDropdown
-              class="text-uppercase"
-              :variant="navColor"
-              :langs="availableLocales"
-              :style-class="`text-${navTextColor}`"
-            >
-              <template #special-content>
-                <span
-                  :class="`align-middle material-icons md-24 text-${navTextColor}`"
-                >
-                  translate
-                </span>
-              </template>
-            </LangDropdown>
-          </b-navbar-nav>
-        </div>
+                translate
+              </span>
+            </template>
+          </LangDropdown>
+        </b-navbar-nav>
       </div>
-    </b-collapse>
+    </div>
   </b-navbar>
 </template>
 
@@ -111,9 +99,6 @@ export default {
     },
   },
   computed: {
-    getPath() {
-      return this.$route.path === '/' ? '' : this.$route.path
-    },
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     },
@@ -141,11 +126,5 @@ export default {
   -ms-transition: background-color 500ms;
   -o-transition: background-color 500ms;
   transition: background-color 500ms;
-}
-</style>
-
-<style>
-.navbar-toggler-icon {
-  fill: var(--light);
 }
 </style>
