@@ -5,6 +5,11 @@ export default {
     about: 'Acerca de',
     contact: 'Contacto',
   },
+  footer: {
+    emailHover: 'Copia mi correo al portapapeles',
+    emailCopy: 'Se copió el email al portapapeles',
+    emailNotCopy: 'No se pudo copiar el email al portapapeles',
+  },
   about: {
     header: 'Nicholas David',
     lead: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus fuga

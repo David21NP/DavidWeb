@@ -5,6 +5,11 @@ export default {
     about: 'About',
     contact: 'Contact',
   },
+  footer: {
+    emailHover: 'Copy my email to clipboard',
+    emailCopy: 'Email copied to clipboard',
+    emailNotCopy: 'Could not copy email to clipboard',
+  },
   about: {
     header: 'Nicholas David',
     lead: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus fuga

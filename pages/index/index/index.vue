@@ -46,7 +46,7 @@ export default {}
 
 <style lang="scss" scoped>
 #about {
-  padding-top: 6rem !important;
+  padding-top: 9rem !important;
   padding-bottom: 3rem !important;
 }
 </style>

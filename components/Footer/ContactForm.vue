@@ -1,5 +1,5 @@
 <template>
-  <b-form v-if="show" @submit="onSubmit">
+  <b-form v-if="show" :action="`mailto:${mailto}`">
     <b-form-row>
       <b-col md="6" sm="6">
         <b-form-group
@@ -115,6 +115,9 @@ export default {
       return this.form.message.length === 0
         ? null
         : this.form.message.length >= 10
+    },
+    mailto() {
+      return `ndavidcp@gmail.com?cc=${this.form.email}&subject=${this.form.name} -- ${this.form.subject}&body=${this.form.message}`
     },
   },
   mounted() {

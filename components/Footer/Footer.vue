@@ -19,6 +19,17 @@
         >
           <b-icon-linkedin font-scale="2" />
         </b-nav-item>
+        <b-nav-item id="showMail" :link-classes="txClass" @click="copyMail">
+          <b-icon-mailbox font-scale="2" />
+        </b-nav-item>
+        <b-tooltip
+          target="showMail"
+          :show="showTootip"
+          triggers="hover manual"
+          variant="gray-700"
+        >
+          {{ emailTootip }}
+        </b-tooltip>
         <!-- <b-nav-item
           :link-classes="txClass"
           href="https://www.instagram.com/"
@@ -77,12 +88,65 @@ export default {
       default: 'light',
     },
   },
+  data() {
+    return {
+      tooltipMessage: this.$t('footer.emailHover'),
+      copyState: 0,
+      showTootip: false,
+      allowed: false,
+    }
+  },
   computed: {
     bgClass() {
       return 'bg-'.concat(this.bgColor)
     },
     txClass() {
       return 'text-'.concat(this.txColor)
+    },
+    emailTootip() {
+      return this.copyState === 0
+        ? this.$t('footer.emailHover')
+        : this.copyState === 1
+        ? this.$t('footer.emailCopy')
+        : this.$t('footer.emailNotCopy')
+    },
+  },
+  mounted() {
+    navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
+      if (result.state === 'granted' || result.state === 'prompt') {
+        this.allowed = true
+      }
+    })
+  },
+  methods: {
+    copyMail() {
+      if (this.allowed) {
+        navigator.clipboard.writeText('ndavidcp@gmail.com').then(
+          () => {
+            this.showTootip = true
+            this.copyState = 1
+            setTimeout(() => {
+              this.showTootip = false
+              this.copyState = 0
+            }, 3000)
+          },
+          () => {
+            this.showTootip = true
+            this.copyState = 2
+            setTimeout(() => {
+              this.showTootip = false
+              this.copyState = 0
+            }, 3000)
+          }
+        )
+      } else {
+        this.showTootip = true
+        this.copyState = 2
+        setTimeout(() => {
+          this.showTootip = false
+          this.copyState = 0
+        }, 3000)
+      }
     },
   },
 }

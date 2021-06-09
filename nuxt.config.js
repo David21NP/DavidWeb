@@ -1,8 +1,10 @@
+import path from 'path'
+import fs from 'fs'
 import getRoutes from './utils/getRoutes'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'server',
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -97,6 +99,22 @@ export default {
   bootstrapVue: {
     // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
     icons: true,
+    /* components: [
+      'BIcon',
+      'BIconPerson',
+      'BIconFolder',
+      'BIconInfoCircle',
+      'BIconTelephone',
+      'BIconDot',
+      'BIconDash',
+      'BIconArrowLeft',
+      'BIconArrowRight',
+      'BIconGithub',
+      'BIconLinkedin',
+      'BIconInstagram',
+      'BIconGlobe',
+      'BIconExclamationCircle',
+    ], */
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -105,7 +123,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      name: 'Nicholas David PWA',
     },
     icon: {
       fileName: 'favicon.png',
@@ -116,14 +134,28 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    babel: { compact: true },
+  },
+
+  // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env/
+  env: {
+    port: process.env.PORT || 80,
+    host: process.env.HOST || 'nicholas-david.com',
+    baseUrl:
+      process.env.BASE_URL || `https://${process.env.HOST}:${process.env.PORT}`,
+  },
 
   /*
    ** For deployment you might want to edit host and port
    */
   server: {
-    port: 8000,
-    host: '192.168.0.3',
+    port: process.env.PORT || 80,
+    host: process.env.HOST || 'nicholas-david.com',
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, './utils/localhost.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, './utils/localhost.crt')),
+    },
   },
 
   // Router opts: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router/
@@ -148,7 +180,7 @@ export default {
   },
 
   sitemap: {
-    hostname: process.env.BASE_URL, // https://www.yoursite.com
+    hostname: process.env.BASE_URL || `https://www.nicholas-david.com`,
     routes() {
       return getRoutes()
     },
