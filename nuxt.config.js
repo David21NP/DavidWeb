@@ -138,6 +138,10 @@ export default {
     babel: { compact: true },
   },
 
+  generate: {
+    dir: '../NginxServer/dist',
+  },
+
   // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env/
   env: {
     port: process.env.PORT || 80,
