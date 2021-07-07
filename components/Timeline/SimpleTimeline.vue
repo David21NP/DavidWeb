@@ -13,7 +13,20 @@
         order="6"
         :order-md="id % 2 == 0 ? 1 : 6"
       >
-        {{ $t(event.description) }}
+        <b-media>
+          <template #aside>
+            <b-icon
+              font-scale="4"
+              :icon="event.icon.name"
+              :variant="$colorMode.value === 'dark' ? 'secondary' : 'primary'"
+            />
+          </template>
+
+          <h4>{{ $t(event.info.title) }}</h4>
+          <p v-for="(parag, idp) in $t(event.info.description)" :key="idp">
+            {{ parag }}
+          </p>
+        </b-media>
       </b-col>
       <!-- Second column -->
       <b-col class="time-line" md="1" order="2">

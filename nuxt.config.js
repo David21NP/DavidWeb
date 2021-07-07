@@ -1,10 +1,8 @@
-import path from 'path'
-import fs from 'fs'
 import getRoutes from './utils/getRoutes'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -48,7 +46,7 @@ export default {
         rel: 'stylesheet',
       }, */
     ],
-    script: [{ src: 'https://d3js.org/d3.v6.min.js' }],
+    // script: [{ src: 'https://d3js.org/d3.v6.min.js' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -144,23 +142,22 @@ export default {
 
   // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-env/
   env: {
-    port: process.env.PORT || 80,
-    host: process.env.HOST || 'nicholas-david.com',
-    baseUrl:
-      process.env.BASE_URL || `https://${process.env.HOST}:${process.env.PORT}`,
+    port: process.env.PORT || 443,
+    host: process.env.HOST || 'www.nicholas-david.com',
+    baseUrl: process.env.BASE_URL || 'https://www.nicholas-david.com',
   },
 
   /*
    ** For deployment you might want to edit host and port
    */
-  server: {
-    port: process.env.PORT || 80,
-    host: process.env.HOST || 'nicholas-david.com',
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, './utils/localhost.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, './utils/localhost.crt')),
-    },
-  },
+  // server: {
+  //   port: process.env.PORT || 443,
+  //   host: process.env.HOST || 'localhost',
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, './utils/localhost.key')),
+  //     cert: fs.readFileSync(path.resolve(__dirname, './utils/localhost.crt')),
+  //   },
+  // },
 
   // Router opts: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router/
   router: {},
@@ -172,7 +169,7 @@ export default {
       { code: 'en', iso: 'en-US', file: 'en.js', name: 'EN' },
       // { code: 'fr', iso: 'fr-FR', file: 'fr.js', name: 'FR' },
     ],
-    defaultLocale: 'es',
+    defaultLocale: 'en',
     langDir: '~/assets/js/lang/',
     strategy: 'prefix',
     detectBrowserLanguage: {
@@ -184,7 +181,7 @@ export default {
   },
 
   sitemap: {
-    hostname: process.env.BASE_URL || `https://www.nicholas-david.com`,
+    hostname: process.env.BASE_URL || 'https://www.nicholas-david.com',
     routes() {
       return getRoutes()
     },

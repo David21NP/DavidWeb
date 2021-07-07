@@ -76,10 +76,10 @@ export default {
       return rows
     },
     bgColor() {
-      return this.$colorMode.value === 'dark' ? 'dark' : 'light'
+      return this.$colorMode.value === 'dark' ? 'gray-800' : 'gray-200'
     },
     txColor() {
-      return this.$colorMode.value === 'dark' ? 'light' : 'gray-800'
+      return this.$colorMode.value === 'dark' ? 'light' : 'dark'
     },
   },
   mounted() {},

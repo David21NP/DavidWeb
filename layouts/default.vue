@@ -55,7 +55,7 @@ export default {
         : ''
     },
     colorBtm() {
-      return this.$colorMode.value === 'light' ? 'primary' : 'gray-800'
+      return this.$colorMode.value === 'light' ? 'primary' : 'gray-700'
     },
     navbClass() {
       return (this.$route.path !== this.locale &&

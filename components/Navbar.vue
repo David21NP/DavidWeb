@@ -22,12 +22,6 @@
           <div class="d-none d-lg-flex">
             <b-nav-item
               :link-classes="`text-${navTextColor}`"
-              :to="localePath({ path: '/life' })"
-            >
-              {{ $t('navbar.life') }}
-            </b-nav-item>
-            <b-nav-item
-              :link-classes="`text-${navTextColor}`"
               :to="localePath({ path: '/projects' })"
             >
               {{ $t('navbar.projects') }}

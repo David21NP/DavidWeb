@@ -48,12 +48,6 @@
         <b-nav-item :link-classes="`px-0 ${txClass}`" disabled>
           <b-icon-dash />
         </b-nav-item>
-        <b-nav-item :link-classes="txClass" :to="localePath({ path: '/life' })">
-          {{ $t('navbar.life') }}
-        </b-nav-item>
-        <b-nav-item :link-classes="`px-0 ${txClass}`" disabled>
-          <b-icon-dash />
-        </b-nav-item>
         <b-nav-item
           :link-classes="txClass"
           :to="localePath({ path: '/projects' })"

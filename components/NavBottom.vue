@@ -9,12 +9,12 @@
     <b-navbar-nav class="mx-auto">
       <b-nav-item
         :link-classes="`text-${navTextColor}`"
-        :to="localePath({ path: '/life' })"
+        :to="localePath({ path: '/', hash: 'about' })"
         class="mx-auto"
       >
-        <b-icon-person class="w-100" />
+        <b-icon-info-circle class="w-100" />
         <div class="small text-center">
-          {{ $t('navbar.life') }}
+          {{ $t('navbar.about') }}
         </div>
       </b-nav-item>
       <b-nav-item
@@ -25,16 +25,6 @@
         <b-icon-folder class="w-100" />
         <div class="small text-center">
           {{ $t('navbar.projects') }}
-        </div>
-      </b-nav-item>
-      <b-nav-item
-        :link-classes="`text-${navTextColor}`"
-        :to="localePath({ path: '/', hash: 'about' })"
-        class="mx-auto"
-      >
-        <b-icon-info-circle class="w-100" />
-        <div class="small text-center">
-          {{ $t('navbar.about') }}
         </div>
       </b-nav-item>
       <b-nav-item
